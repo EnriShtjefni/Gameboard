@@ -1,0 +1,32 @@
+.history {
+  margin-left: 30px;
+  width: 367px;
+  height: 591px;
+  grid-area: right;
+  padding: 59px 85px;
+  box-shadow: 0 0 40px #ffc10763;
+  background-color: #21252987;
+  background-image: url(../images/goldFrame.png);
+  background-size: 370px 596px;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: navajowhite;
+}
+
+.history-title {
+  font-family: monospace;
+  font-size: 36px;
+  font-weight: bold;
+  border-bottom: 1px solid;
+  margin-left: 4px;
+}
+
+.history-container {
+  overflow-y: scroll;
+  height: 97%;
+}
+
+.history-container::-webkit-scrollbar {
+  display: none;
+}

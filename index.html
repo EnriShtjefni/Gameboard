@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Don't Get Angry</title>
+  <link rel="icon" href="images/IconDice.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/general.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/gameBoard.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/gameContainer.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/historyContainer.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/modalStyles.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/playersSectionContainer.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/responsiveness.css" />
+</head>
+
+<body>
+  <div class="logo-container">
+    <img src="images/logo.webp" id="logo-image" alt="Logo image" class="logoImage" />
+  </div>
+
+  <div class="main-container">
+    <div class="button">
+      <!-- theme -->
+      <label class="switch" title="Change theme">
+        <span class="sun">
+          <img src="./images/sun.svg" alt="Sun Icon" />
+        </span>
+        <span class="moon">
+          <img src="./images/moon.svg" alt="Moon Icon" />
+        </span>
+        <input type="checkbox" id="switch" class="input" />
+        <span class="slider"></span>
+      </label>
+
+      <!-- audio -->
+      <img src="media/play.png" class="icon" title="Audio" />
+      <audio id="song" loop>
+        <source src="media/song.mp3" type="audio/mp3" />
+      </audio>
+
+      <!-- Button trigger modal -->
+      <button class="instructions btn btn-primary" type="button" data-toggle="modal" data-target=".exampleModalLong"
+        title="Instructions">
+        <i class="fa-sharp fa-solid fa-question"></i>
+      </button>
+
+      <!-- Button trigger exit -->
+      <button class="exit" title="Exit Game">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Instructions</h5>
+            </div>
+            <div class="modal-body">
+              <ol>
+                <li>You start the game only when you roll a 6.</li>
+                <li>
+                  If you roll a 6 you roll again up to three times <br />
+                  and the number of tiles you are going to move adds up.
+                </li>
+                <li>
+                  If a player moves to another player's tile it <br />
+                  sends that player back to the beginning <br />
+                  of the board.
+                </li>
+                <li>There are interesting traps along the way.</li>
+                <li class="haveFunTitle">Have Fun!</li>
+              </ol>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="footer-btn">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-container">
+      <div class="game-board">
+      </div>
+      <div class="right-container">
+        <div class="player-info">
+          <div class="form-container">
+            <h2 id="form-title">Enter Player Names</h2>
+            <input type="text" id="player1Name" placeholder="Player 1 Name" />
+            <input type="text" id="player2Name" placeholder="Player 2 Name" />
+            <button class="startGame colorBackgroundButton">Start Game</button>
+          </div>
+
+          <!-- Display player names -->
+          <div class="player-names">
+            <div id="gif-container" class="gif-style">
+              <img src="images/roll-dice.gif" />
+            </div>
+            <div class="player-names-container">
+              <div class="player-name">
+                <p class="player-label" id="player1Label">
+                  First Player:
+                  <span style="color: lightblue" id="firstPlayer"></span>
+                </p>
+              </div>
+
+              <div class="player-name">
+                <p class="player-label" id="player2Label">
+                  Second Player:
+                  <span style="color: pink" id="secondPlayer"></span>
+                </p>
+              </div>
+
+              <div class="dice-container" id="diceContainer">
+                <img src="images/roll-dice.gif" id="diceImage" alt="Playing dice" class="dice" />
+              </div>
+
+              <div class="roll-button-container">
+                <button class="roll-dice colorBackgroundButton" id="rollDice">🎲 Roll Dice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- History content -->
+        <div class="history">
+          <h3 class="history-title">History</h3>
+          <div class="history-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- NamesValid Modal -->
+  <div class="modal fade" id="namesValid" tabindex="-1" aria-labelledby="namesValidLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="namesValidLabel">Warning</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <p>Player names cannot be empty</p>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" id="footer-btn">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exit Modal -->
+  <div class="modal fade" id="exitModal" tabindex="-1" aria-labelledby="exitModalabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exitModalLabel">Exit Game</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <p>Are you sure you want to exit the game?</p>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="confirmExitButton">
+            Yes
+          </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="footer-btn">
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Winner Modal -->
+  <div class="modal fade winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="winnerModalLabel">Game Over</h5>
+          <button type="button" id="closeModalWinner" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <h3 id="winningPlayerText">
+            Congratulations! The winner is:
+            <span id="winnerName" style="color: rgb(15, 92, 50); font-weight: bold"></span>
+          </h3>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="startNewGameButton">
+            Start New Game
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script id="tile-template" type="text/template">
+      <div class="tile" id="tile-{{id}}" style="background-color: {{backgroundColor}}">
+        {{id}}
+        {{#content}}
+          <div class="centered-content">{{content}}</div>
+        {{/content}}
+        {{#birdGif}}
+          <div class="bird-gif-container" class="bird-gif-style">
+            <img src="images/bird.gif" width="50px" height="auto" />
+          </div>
+        {{/birdGif}}
+        {{#crownGif}}
+          <div class="crown-gif-container" class="crown-gif-style">
+            <img src="images/crown.gif" width="50px" height="auto" />
+          </div>
+        {{/crownGif}}
+      </div>
+    </script>
+  <script type="module" src="./scripts/game.js"></script>
+  <script type="module" src="./scripts/historyModule.js"></script>
+  <script type="module" src="./scripts/constants.js"></script>
+  <script type="module" src="./scripts/gameBoard.js"></script>
+  <script type="module" src="./scripts/player.js"></script>
+  <script type="module" src="./library/mustache.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

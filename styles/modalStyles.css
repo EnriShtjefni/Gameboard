@@ -1,0 +1,86 @@
+.exampleModalLong .modal-content {
+  background-image: url(../images/goldFrame.png);
+  background-size: 503px 416px;
+  background-color: #00000085;
+  height: 415px;
+  border-radius: 0.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.exampleModalLong .modal-title {
+  margin-left: 31%;
+  font-size: 33px;
+  color: white;
+  font-weight: 700;
+}
+
+.exampleModalLong .modal-header,
+.exampleModalLong .modal-footer {
+  border: none;
+}
+
+.exampleModalLong .modal-body {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.haveFunTitle {
+  list-style: none;
+  text-align: center;
+  font-size: 32px;
+  margin-top: 11px;
+}
+
+.exampleModalLong #footer-btn {
+  background-color: #ae1414;
+  box-shadow: 3px 3px 12px white;
+  color: white;
+}
+
+.exampleModalLong .close-modal {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.modal-title,
+.modal-body {
+  color: black;
+}
+
+.winnerModal .modal-content {
+  background-image: url('../images/winner.gif');
+  height: 230px;
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.winnerModal .modal-title {
+  margin-left: 31%;
+  font-size: 33px;
+  color: white;
+  font-weight: 700;
+}
+
+.winnerModal .modal-body {
+  text-align: center;
+  color: white;
+}
+
+.winnerModal .modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.winnerModal .modal-header,
+.winnerModal .modal-footer {
+  border: none;
+}
